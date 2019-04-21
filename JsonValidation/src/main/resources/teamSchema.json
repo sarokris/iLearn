@@ -1,0 +1,29 @@
+{
+	"title": "Team deatils",
+	"description": "Team details schema",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"memebers": {
+			"type": "array",
+			"items": [
+				{
+					"type": "object",
+					"properties": {
+						"A": {
+							"type": "string"
+						},
+						"B": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"A"
+					]
+				}
+			]
+		}
+	}
+} 
