@@ -1,10 +1,7 @@
 package com.example.controller;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,16 +37,15 @@ public class CustomerController {
 	
 	@RequestMapping("/new")
 	public String newCustomerForm(Map<String, Object> model) {
-		Customer customer = new Customer();
+		Customer customer = new Customer( null, null, null, null);
 		model.put("customer", customer);
 		return "new_customer";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-		Set<CustomerRole> roles= new HashSet<>();
-		roles.add(customerRoleService.getRoleByName(AppConstants.ROLE_USER));
-		customer.setRoles(roles);
+		CustomerRole  role = customerRoleService.getRoleByName(AppConstants.ROLE_USER);
+		customer.setRoles(role);
 		customerService.save(customer);
 		return "redirect:/customer/";
 	}
