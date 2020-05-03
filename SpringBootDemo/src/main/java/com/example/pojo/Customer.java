@@ -1,27 +1,21 @@
 package com.example.pojo;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
-	public Customer(Long id, String name, String email, String address, Set<CustomerRole> roles) {
+public class Customer  extends AbstarctAuditEntity {
+	public Customer(String name, String email, String address, CustomerRole role) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.address = address;
-		this.roles = roles;
+		this.role = role;
 	}
 
 	@Id
@@ -31,24 +25,10 @@ public class Customer {
 	private String name;
 	private String email;
 	private String address;
-
-	@ManyToMany
-	@JoinTable(name = "customer_role_mapping_solved", joinColumns = {
-			@JoinColumn(name = "customer_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "role_id", referencedColumnName = "id") })
-	private Set<CustomerRole> roles = new HashSet<>(); 
-
-	public Customer() {
-	}
 	
-//	public Customer(String name, String email, String address) {
-//		this.name = name;
-//		this.email = email;
-//		this.address = address;
-//	}
+	@OneToOne
+	private CustomerRole role;
 
-
-	
 	public Long getId() {
 		return id;
 	}
@@ -81,12 +61,12 @@ public class Customer {
 		this.address = address;
 	}
 
-	public Set<CustomerRole> getRoles() {
-		return roles;
+	public CustomerRole getRole() {
+		return role;
 	}
 
-	public void setRoles(Set<CustomerRole> roles) {
-		this.roles = roles;
+	public void setRoles(CustomerRole role) {
+		this.role = role;
 	}
 
 	

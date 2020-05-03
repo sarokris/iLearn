@@ -2,6 +2,8 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,8 +46,8 @@ public class CustomerRoleController {
 	}
 	
 	@PostMapping
-	public String addRole(@RequestBody CustomerRoleDTO role) {
-		return customerService.addRole(role);
+	public String addRole(@RequestBody @Valid CustomerRoleDTO role) {
+		return customerService.addRole(role); 
 		
 	}
 	
