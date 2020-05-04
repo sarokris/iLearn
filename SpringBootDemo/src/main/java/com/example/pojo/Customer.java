@@ -1,5 +1,6 @@
 package com.example.pojo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "customer")
 public class Customer  extends AbstarctAuditEntity {
+	
+	public Customer() {
+		super();
+	}
 	public Customer(String name, String email, String address, CustomerRole role) {
 		super();
 		this.name = name;

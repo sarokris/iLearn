@@ -9,9 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -23,17 +21,17 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class AbstarctAuditEntity {
 	
-	@CreatedBy
-	@Column(name="created_by",nullable=false,updatable=false,length=50)
-	private String createdBy;
+//	@CreatedBy
+//	@Column(name="created_by",nullable=false,updatable=false,length=50)
+//	private String createdBy;
 	
 	@CreatedDate
 	@Column(name="created_time",nullable=false,updatable=false)
 	private ZonedDateTime createdTime;
 	
-	@LastModifiedBy
-	@Column(name="last_modified_by",updatable=false,length=50)
-	private String lastModifiedBy;
+//	@LastModifiedBy
+//	@Column(name="last_modified_by",updatable=false,length=50)
+//	private String lastModifiedBy;
 	
 	@LastModifiedDate
 	@Column(name="last_modified_time",updatable=false)
