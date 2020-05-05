@@ -6,7 +6,8 @@ public class AppConstants {
 		
 	}
 	
-	public static final String ROLE_USER = "User";
-	public static final String ROLE_ADMIN= "Admin";
+	public static final String ROLE_USER = "USER";
+	public static final String ROLE_ADMIN= "ADMIN";
+	public static final String SYSTEM= "SYSTEM";
 
 }

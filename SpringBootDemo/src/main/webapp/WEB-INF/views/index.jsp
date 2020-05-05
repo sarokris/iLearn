@@ -22,6 +22,7 @@
 			<th>Name</th>
 			<th>E-mail</th>
 			<th>Address</th>
+			<th>Created</th>
 			<th>Action</th>
 		</tr>
 		<c:forEach items="${listCustomer}" var="customer">
@@ -30,6 +31,7 @@
 			<td>${customer.name}</td>
 			<td>${customer.email}</td>
 			<td>${customer.address}</td>
+			<td>${customer.createdBy}</td>
 			<td>
 				<a href="edit?id=${customer.id}">Edit</a>
 				&nbsp;&nbsp;&nbsp;
