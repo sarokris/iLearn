@@ -17,6 +17,8 @@ import com.example.pojo.CustomerRoleDTO;
 import com.example.service.CustomerRoleService;
 import com.example.service.CustomerService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/role")
 public class CustomerRoleController {
@@ -29,12 +31,14 @@ public class CustomerRoleController {
 	
 	
 	@GetMapping("/{id}")
+	@ApiOperation(value="get the role of the given customer",response=String.class)
 	public String getRole(@PathVariable(name="id") Long customerId) {
 		return customerService.getRole(customerId);
 		
 	}
 	
 	@GetMapping("/name/{role}")
+	@ApiOperation(value="Return the role Object with given roleName",response=CustomerRole.class)
 	public CustomerRole getRoleByName(@PathVariable(name="role") String roleName) {
 		return customerRoleService.getRoleByName(roleName);
 		

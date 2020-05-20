@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.pojo.User;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 
 @Controller
 public class HomeController {
@@ -20,6 +22,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	@ApiIgnore
 	public String home(Locale locale, Model model) {
 		System.out.println("Home Page Requested, locale = " + locale);
 		Date date = new Date();
@@ -33,6 +36,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	@ApiIgnore
 	public String user(@Validated User user, Model model) {
 		System.out.println("User Page Requested");
 		model.addAttribute("userName", user.getUserName());

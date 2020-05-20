@@ -17,8 +17,12 @@ import com.example.pojo.CustomerRole;
 import com.example.service.CustomerRoleService;
 import com.example.service.CustomerService;
 
+import io.swagger.annotations.Api;
+import springfox.documentation.annotations.ApiIgnore;
+
 @Controller
 @RequestMapping("/customer")
+@Api(value="CustomerController", description="Operations pertaining to products in Online Store")
 public class CustomerController {
 
 	@Autowired
@@ -28,6 +32,7 @@ public class CustomerController {
 	private CustomerRoleService customerRoleService;
 	
 	@RequestMapping("/")
+	@ApiIgnore
 	public ModelAndView home() {
 		List<Customer> listCustomer = customerService.listAll();
 		ModelAndView mav = new ModelAndView("index");
@@ -36,6 +41,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/new")
+	@ApiIgnore
 	public String newCustomerForm(Map<String, Object> model) {
 		Customer customer = new Customer( null, null, null, null);
 		model.put("customer", customer);
@@ -43,6 +49,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@ApiIgnore
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
 		CustomerRole  role = customerRoleService.getRoleByName(AppConstants.ROLE_USER);
 		customer.setRoles(role);
@@ -51,6 +58,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/edit")
+	@ApiIgnore
 	public ModelAndView editCustomerForm(@RequestParam long id) {
 		ModelAndView mav = new ModelAndView("edit_customer");
 		Customer customer = customerService.get(id);
@@ -60,12 +68,14 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/delete")
+	@ApiIgnore
 	public String deleteCustomerForm(@RequestParam long id) {
 		customerService.delete(id);
 		return "redirect:/customer/";		
 	}
 	
 	@RequestMapping("/search")
+	@ApiIgnore
 	public ModelAndView search(@RequestParam String keyword) {
 		List<Customer> result = customerService.search(keyword);
 		ModelAndView mav = new ModelAndView("search");
